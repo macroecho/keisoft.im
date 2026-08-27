@@ -388,6 +388,14 @@ WebAPI 不参与实时通信，仅提供辅助能力：
   }
   ```
 
+#### 3. Windows 上如何使用 `Keisoft.IM.Server`
+
+- 👉前往 [![Latest Release](https://img.shields.io/github/v/release/macroecho/keisoft.im)](../../releases/latest)下载对应 Windows 系统的可执行程序。解压后，修改 `app.json` 中的数据库连接字符串。
+- 双击 `Keisoft.IM.Server.Activity.exe` 运行，看到以下界面说明运行成功。
+  ![Keisoft.IM.Server 运行效果](Images/win-run.png)
+
+
+
 ---
 
 

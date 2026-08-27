@@ -1,4 +1,4 @@
-<h1 align="center">Keisoft.IM —— High-Performance .NET Instant Messaging Backplane</h1>
+<h1 align="center">Keisoft.IM —— High-Performance .NET Instant Messaging System</h1>
 
 <p align="center">
   <strong>"Massive Connections, Millisecond Delivery" —— Redefining the Performance Boundaries of Real-Time Communication for .NET</strong>
@@ -381,6 +381,13 @@ In terms of message persistence, high-reliability synchronous and asynchronous s
       include /www/wwwroot/Keisoft.IM/Keisoft.IM.Http/nginx.conf;
   }
   ```
+#### 3. How to use `Keisoft.IM.Server` on Windows
+
+- 👉 Download the Windows executable from the Releases page  [![Latest Release](https://img.shields.io/github/v/release/macroecho/keisoft.im)](../../releases/latest). Extract the files and edit the database connection string in `app.json`.
+
+- Double-click `Keisoft.IM.Server.Activity.exe` to start the server. You'll know it's running successfully when you see the screen below.
+
+  ![Keisoft.IM.Server](Images/win-run.png)
 
 ---
 
