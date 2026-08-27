@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<Nullable>disable</Nullable>
+		<ImplicitUsings>disable</ImplicitUsings>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Keisoft.IM.Server.Sdk" Version="6.0.3" />
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="7.0.1" />
+		<PackageReference Include="MySqlConnector" Version="2.5.0" />
+		<PackageReference Include="StackExchange.Redis" Version="2.7.27" />
+		<PackageReference Include="NLog.Web.AspNetCore" Version="6.1.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="demo.crt">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+</Project>

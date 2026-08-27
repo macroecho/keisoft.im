@@ -1,0 +1,66 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: keisoft.im.mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: example@123
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  # ===== Redis =====
+  redis:
+    image: redis:7-alpine
+    container_name: keisoft.im.redis
+    mem_limit: 512m
+    command: redis-server --maxmemory 256mb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped    
+
+  # 即时通讯服务，负责客户端长连接（TCP）管理、消息接收与路由转发。
+  keisoft-im-server:
+    build:
+      context: ./Keisoft.IM.Server
+      dockerfile: Dockerfile
+    image: keisoft/im.server:1.0.8
+    container_name: keisoft.im.server-18168
+    environment:
+      - TZ=Asia/Shanghai
+    # 默认配置已在镜像中配置好了，需要修改配置，使用配置文件挂载。
+    # volumes:
+    #  - Keisoft.IM.Server/app.json:/app/app.json
+    restart: unless-stopped
+    depends_on:
+      - mysql
+      - redis
+    ports:
+      - "18168:18168"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  keisoft-im-http:
+    build:
+      context: .
+      dockerfile: Keisoft.IM.Http/Dockerfile
+    image: keisoft/im.http:1.0.8
+    container_name: keisoft.im.http-18165
+    environment:
+      - TZ=Asia/Shanghai
+    # TCP 服务的公网 IP 
+      - TcpServiceAddress__0=xxx.xxx.xxx.xxx:18168
+    # 默认配置已在镜像中配置好了，需要修改配置，使用配置文件挂载。
+    # volumes:
+    #  - Keisoft.IM.Http/appsettings.json:/app/appsettings.json
+    restart: unless-stopped
+    depends_on:
+      - mysql
+      - keisoft-im-server
+    ports:
+      - "18165:8080"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+volumes:
+  mysql-data:
+  redis-data:

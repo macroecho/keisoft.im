@@ -1,0 +1,12 @@
+# 已编译发布文件，无需 SDK 编译阶段
+FROM mcr.microsoft.com/dotnet/aspnet:9.0
+
+WORKDIR /app
+
+# 把 publish 目录下的所有文件复制进容器
+COPY bin/Release/net9.0/publish/ ./
+
+# 默认监听 8080
+EXPOSE 8080
+
+ENTRYPOINT ["dotnet", "Keisoft.IM.Http.dll"]
